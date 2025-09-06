@@ -2,11 +2,11 @@ import { useEffect, useState } from "react";
 import { collection, query, where, orderBy, onSnapshot } from "firebase/firestore";
 import { db } from "../firebase";
 
-export default function ExpenseList({ user }) { // ✅ accept user as prop
+export default function ExpenseList({ user }) {
   const [expenses, setExpenses] = useState([]);
 
   useEffect(() => {
-    if (!user) return; // ✅ wait for user to be logged in
+    if (!user) return; // wait until user is logged in
 
     const q = query(
       collection(db, "expenses"),
@@ -15,11 +15,11 @@ export default function ExpenseList({ user }) { // ✅ accept user as prop
     );
 
     const unsub = onSnapshot(q, (snapshot) => {
-      setExpenses(snapshot.docs.map((doc) => ({ id: doc.id, ...doc.data() })));
+      setExpenses(snapshot.docs.map(doc => ({ id: doc.id, ...doc.data() })));
     });
 
     return () => unsub();
-  }, [user]); // ✅ re-run when user changes
+  }, [user]); // re-run when user changes
 
   return (
     <ul>
