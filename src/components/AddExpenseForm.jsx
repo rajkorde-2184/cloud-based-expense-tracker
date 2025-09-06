@@ -11,12 +11,19 @@ export default function AddExpenseForm() {
     e.preventDefault();
     if (!amount) return;
 
-    await addDoc(collection(db, "expenses"), {
-      amount: Number(amount),
-      category,
-      note,
-      createdAt: serverTimestamp(),
-    });
+    console.log("Adding expense:", amount, category, note); // 👈 debug log
+
+    try {
+      await addDoc(collection(db, "expenses"), {
+        amount: Number(amount),
+        category,
+        note,
+        createdAt: serverTimestamp(),
+      });
+      console.log("✅ Expense saved!");
+    } catch (err) {
+      console.error("🔥 Firestore error:", err);
+    }
 
     setAmount("");
     setCategory("");
