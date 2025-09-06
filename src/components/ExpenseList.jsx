@@ -5,6 +5,9 @@ import { db } from "../firebase";
 export default function ExpenseList({ user }) {
   const [expenses, setExpenses] = useState([]);
 
+  console.log("Current user in ExpenseList:", user);
+
+
   useEffect(() => {
     if (!user) return; // wait until user is logged in
 
