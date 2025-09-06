@@ -2,20 +2,20 @@ import { useState } from "react";
 import { collection, addDoc, serverTimestamp } from "firebase/firestore";
 import { db } from "../firebase";
 
-export default function AddExpenseForm({ user }) { // ✅ accept user as prop
+export default function AddExpenseForm({ user }) { // accept user as prop
   const [amount, setAmount] = useState("");
   const [category, setCategory] = useState("");
   const [note, setNote] = useState("");
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    if (!amount || !user) return; // ✅ ensure user is logged in
+    if (!amount || !user) return; // ensure user is logged in
 
     console.log("Adding expense:", amount, category, note, "by user:", user.uid);
 
     try {
       await addDoc(collection(db, "expenses"), {
-        userId: user.uid,          // ✅ save user ID
+        userId: user.uid,          // save user ID
         amount: Number(amount),
         category,
         note,
