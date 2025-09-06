@@ -19,6 +19,8 @@ export default function ExpenseList({ user }) {
 
     const unsub = onSnapshot(q, (snapshot) => {
       setExpenses(snapshot.docs.map(doc => ({ id: doc.id, ...doc.data() })));
+      console.log("Fetched expenses:", data); // 👈 debug log
+      setExpenses(data);
     });
 
     return () => unsub();
