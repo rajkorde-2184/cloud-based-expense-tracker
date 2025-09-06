@@ -1,8 +1,8 @@
 import { useState, useEffect } from "react";
 import { auth } from "./firebase";
 import { onAuthStateChanged, signOut } from "firebase/auth";
-import AddExpenseForm from "./components/AddExpenseForm user={user}";
-import ExpenseList from "./components/ExpenseList user={user}";
+import AddExpenseForm from "<AddExpenseForm user={user}" />;
+import ExpenseList from "<ExpenseList user={user} />";
 import AuthForm from "./components/AuthForm";
 
 function App() {
